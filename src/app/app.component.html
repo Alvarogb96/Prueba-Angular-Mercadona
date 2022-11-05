@@ -1,3 +1,47 @@
 <div style="width: 100%">
   <app-header></app-header>
 </div>
+<div id="bloque-bienvenida" *ngIf="!mostrarTabla">
+  <p id="texto-bienvenida">Bienvenido</p>
+
+  <p-card id="bloque-inicial">
+    <p>Tornillos</p>
+    <p>100 por revisar</p>
+    <div class="boton" id="boton-revisar">
+      <p-button label="Revisar" class="p-button-success" icon="pi pi-eye" (click)="revisar()"></p-button>
+    </div>
+  </p-card>
+
+</div>
+
+<div id="tabla-resultado" *ngIf="mostrarTabla">
+  <p-table [value]="tornillos" [scrollable]="true" scrollHeight="400px" [paginator]="true" [rows]="5"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5,10,20]">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button type="button" pButton pRipple icon="pi pi-cog" class=" ml-auto p-button-rounded p-button-text"></button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Formato</th>
+        <th>Marca</th>
+        <th>Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tornillo>
+      <tr>
+        <td>{{tornillo.nombre}}</td>
+        <td>{{tornillo.precio}}</td>
+        <td>{{tornillo.formato}}</td>
+        <td>{{tornillo.marca}}</td>
+        <td></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
