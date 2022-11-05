@@ -1,0 +1,48 @@
+<div id="nuevo-producto">
+    <div class="grid p-fluid">
+        <div class="col-12 field">
+            <label for="nombre" class="block">Nombre</label>
+            <input id="nombre" type="text" pInputText [(ngModel)]="producto.nombre"
+                [ngClass]="{'ng-invalid ng-dirty': !validaciones.nombre}" />
+            <small *ngIf="!validaciones.nombre" class="block required">Obligatorio</small>
+        </div>
+    </div>
+    <div class="grid p-fluid">
+        <div class="col-6 field" id="precio">
+            <label for="precio" class="block">Precio</label>
+            <p-inputNumber [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal"
+                [step]="0.1" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal"
+                [minFractionDigits]="1" [(ngModel)]="precio" [ngClass]="{'ng-invalid ng-dirty': !validaciones.precio}">
+            </p-inputNumber>
+            <small *ngIf="!validaciones.precio" class="block required">Obligatorio</small>
+        </div>
+        <div class="col-6 field">
+            <label for="Formato" class="block">Formato</label>
+            <p-dropdown [options]="formatos" placeholder="Seleccione un valor" optionLabel="valor" optionValue="valor"
+                [(ngModel)]="producto.formato" [ngClass]="{'ng-invalid ng-dirty': !validaciones.formato}"></p-dropdown>
+            <small *ngIf="!validaciones.formato" class="block required">Obligatorio</small>
+        </div>
+    </div>
+    <div class="grid p-fluid">
+        <div class="col-12 field">
+            <label for="marca" class="block">Marca</label>
+            <input id="marca" type="text" pInputText [(ngModel)]="producto.marca"
+                [ngClass]="{'ng-invalid ng-dirty': !validaciones.marca}" />
+            <small *ngIf="!validaciones.marca" class="block required">Obligatorio</small>
+        </div>
+    </div>
+
+    <div class="grid p-fluid">
+        <div class="col-2">
+            <div class="boton boton-gris">
+                <p-button label="Cancelar" (click)="cancelar()"></p-button>
+            </div>
+        </div>
+        <div class="col-2 col-offset-8">
+            <div class="boton boton-verde">
+                <p-button label="Guardar" (click)="guardar()"></p-button>
+            </div>
+        </div>
+    </div>
+
+</div>

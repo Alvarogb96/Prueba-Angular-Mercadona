@@ -7,7 +7,7 @@
   <p-card id="bloque-inicial">
     <p>Tornillos</p>
     <p>100 por revisar</p>
-    <div class="boton" id="boton-revisar">
+    <div class="boton boton-verde" id="boton-revisar">
       <p-button label="Revisar" class="p-button-success" icon="pi pi-eye" (click)="revisar()"></p-button>
     </div>
   </p-card>
@@ -15,7 +15,8 @@
 </div>
 
 <div id="tabla-resultado" *ngIf="mostrarTabla">
-  <p-table [value]="tornillos" [scrollable]="true" scrollHeight="400px" [paginator]="true" [rows]="5"
+  <div style="width: 50rem;">
+  <p-table [value]="tornillos" [scrollable]="true" scrollHeight="450px" [paginator]="true" [rows]="5"
     [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[5,10,20]">
     <ng-template pTemplate="caption">
@@ -35,13 +36,21 @@
     <ng-template pTemplate="body" let-tornillo>
       <tr>
         <td>{{tornillo.nombre}}</td>
-        <td>{{tornillo.precio}}</td>
+        <td>{{tornillo.precio}} €</td>
         <td>{{tornillo.formato}}</td>
         <td>{{tornillo.marca}}</td>
-        <td></td>
+        <td>                   
+           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="eliminar(tornillo)"></button>
+        </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
+</div>
 
 
+<div id="footer" *ngIf="mostrarTabla">
+  <div class="boton boton-verde mr-2" id="boton-nuevo">
+    <p-button label="Añadir producto" class="p-button-success" (click)="nuevoProducto()"></p-button>
+  </div>
+</div>
