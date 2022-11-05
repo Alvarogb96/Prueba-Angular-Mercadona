@@ -13,12 +13,14 @@ import { NuevoProductoComponent } from './components/nuevo-producto/nuevo-produc
 
 import { DialogService } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NuevoProductoComponent
+    NuevoProductoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

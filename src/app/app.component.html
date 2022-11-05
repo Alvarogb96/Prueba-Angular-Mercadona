@@ -1,7 +1,13 @@
 <div style="width: 100%">
-  <app-header></app-header>
+  <app-header [usuario]="usuario" [mostrarUsuario]="mostrarUsuario" (loginEvent)="loginEvent($event)"></app-header>
 </div>
-<div id="bloque-bienvenida" *ngIf="!mostrarTabla">
+
+<div id="bloque-login" *ngIf="mostrarLogin">
+  <app-login (mostrarUsuarioEvent)="mostrarUsuarioEvent($event)" (usuarioEvent)="usuarioEvent($event)"></app-login>
+</div>
+
+
+<div id="bloque-bienvenida" *ngIf="!mostrarTabla && !mostrarLogin">
   <p id="texto-bienvenida">{{constantes.bienvenido}}</p>
 
   <p-card id="bloque-inicial">
@@ -11,41 +17,43 @@
       <p-button label="{{constantes.revisar}}" class="p-button-success" icon="pi pi-eye" (click)="revisar()"></p-button>
     </div>
   </p-card>
-
 </div>
 
-<div id="tabla-resultado" *ngIf="mostrarTabla">
+<div id="tabla-resultado" *ngIf="mostrarTabla && !mostrarLogin">
   <div style="width: 50rem;">
-  <p-table [value]="tornillos" [scrollable]="true" scrollHeight="450px" [paginator]="true" [rows]="5"
-    [showCurrentPageReport]="true" currentPageReportTemplate="{{constantes.mostrando}} {first} {{constantes.a}} {last} {{constantes.de}} {totalRecords} {{constantes.items}}"
-    [rowsPerPageOptions]="[5,10,20]">
-    <ng-template pTemplate="caption">
-      <div class="flex">
-        <button type="button" pButton pRipple icon="pi pi-cog" class=" ml-auto p-button-rounded p-button-text"></button>
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>{{constantes.nombre}}</th>
-        <th>{{constantes.precio}}</th>
-        <th>{{constantes.formato}}</th>
-        <th>{{constantes.marca}}</th>
-        <th>{{constantes.acciones}}</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-tornillo>
-      <tr>
-        <td>{{tornillo.nombre}}</td>
-        <td>{{tornillo.precio}} €</td>
-        <td>{{tornillo.formato}}</td>
-        <td>{{tornillo.marca}}</td>
-        <td>                   
-           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger" (click)="eliminar(tornillo)"></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+    <p-table [value]="tornillos" [scrollable]="true" scrollHeight="450px" [paginator]="true" [rows]="5"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="{{constantes.mostrando}} {first} {{constantes.a}} {last} {{constantes.de}} {totalRecords} {{constantes.items}}"
+      [rowsPerPageOptions]="[5,10,20]">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <button type="button" pButton pRipple icon="pi pi-cog"
+            class=" ml-auto p-button-rounded p-button-text"></button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{constantes.nombre}}</th>
+          <th>{{constantes.precio}}</th>
+          <th>{{constantes.formato}}</th>
+          <th>{{constantes.marca}}</th>
+          <th>{{constantes.acciones}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-tornillo>
+        <tr>
+          <td>{{tornillo.nombre}}</td>
+          <td>{{tornillo.precio}} €</td>
+          <td>{{tornillo.formato}}</td>
+          <td>{{tornillo.marca}}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-text p-button-danger"
+              (click)="eliminar(tornillo)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
 
 
@@ -55,4 +63,6 @@
   </div>
 </div>
 
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text p-button-secondary" acceptButtonStyleClass="p-button-danger" [closable]="false"></p-confirmDialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text p-button-secondary" acceptButtonStyleClass="p-button-danger" [closable]="false">
+</p-confirmDialog>

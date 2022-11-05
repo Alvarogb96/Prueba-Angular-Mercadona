@@ -19,13 +19,17 @@ export class AppComponent implements OnInit {
 
   constantes = Constantes;
 
+  usuario!: string;
+
   tornillos: Tornillo[] = [];
 
   tornillosNuevos: Tornillo[] = [];
 
   total!: number;
 
+  mostrarUsuario: boolean = false;
   mostrarTabla: boolean = false;
+  mostrarLogin: boolean = false;
 
   constructor(private tornillosService: TornillosService, private dialogService: DialogService, private confirmationService: ConfirmationService) { }
 
@@ -34,7 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   revisar(): void {
-    this.mostrarTabla = true;
+    this.mostrarLogin = true;
   }
 
   getTornillos(): void {
@@ -75,5 +79,30 @@ export class AppComponent implements OnInit {
           this.tornillos = this.tornillos.filter(tornillo => tornillo != tornilloSeleccionado);
       }
   });
+  }
+
+  loginEvent(event: boolean): void {
+    if(event){
+      this.mostrarLogin = true;
+    } else {
+      this.mostrarTabla = false;
+      this.mostrarLogin = false;
+      this.mostrarUsuario = false;
+      this.total = this.tornillos.length;
+    }
+    
+  }
+
+  mostrarUsuarioEvent(event: boolean): void {
+    if(event){
+      this.mostrarUsuario = event;
+      this.mostrarTabla = true;
+      this.mostrarLogin = false;
+    } 
+    
+  }
+
+  usuarioEvent(event: string): void {
+    this.usuario = event;
   }
 }

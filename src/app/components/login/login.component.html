@@ -1,0 +1,22 @@
+<p-card header="Login" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
+    <div class="grid p-fluid">
+        <div class="col-12 field">
+            <label for="nombre" class="block">Usuario</label>
+            <input id="nombre" type="text" pInputText [(ngModel)]="usuario"/>
+        </div>
+    </div>
+    <div class="grid p-fluid">
+        <div class="col-12 field">
+            <label for="nombre" class="block">Contraseña</label>
+            <input id="nombre" type="text" pInputText [(ngModel)]="password"/>
+        </div>
+    </div>
+
+    <div class="grid p-fluid">
+        <div class="col-4">
+            <div class="boton boton-verde">
+                <p-button label="{{constantes.aceptar}}" (click)="aceptar()"></p-button>
+            </div>
+        </div>
+    </div>
+</p-card>

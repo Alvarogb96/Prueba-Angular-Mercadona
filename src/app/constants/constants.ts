@@ -20,5 +20,6 @@ export const Constantes = {
     seleccione_valor: 'Seleccione un valor',
     confirmacion: 'Confirmación',
     eliminar: 'Eliminar',
-    desea_eliminar: '¿Desea eliminar el elemento seleccionado?'
+    desea_eliminar: '¿Desea eliminar el elemento seleccionado?',
+    aceptar: 'Aceptar'
 }
