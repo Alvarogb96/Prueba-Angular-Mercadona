@@ -3,6 +3,7 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Tornillo, TORNILLO_BLANK } from 'src/app/interfaces/tornillo';
 import { UtilsService } from 'src/app/services/utils/utils.service';
+import { Constantes } from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -10,6 +11,8 @@ import { UtilsService } from 'src/app/services/utils/utils.service';
   styleUrls: ['./nuevo-producto.component.scss']
 })
 export class NuevoProductoComponent implements OnInit {
+
+  constantes = Constantes;
 
   producto: Tornillo = TORNILLO_BLANK();
 

@@ -1,7 +1,7 @@
 <div id="nuevo-producto">
     <div class="grid p-fluid">
         <div class="col-12 field">
-            <label for="nombre" class="block">Nombre</label>
+            <label for="nombre" class="block">{{constantes.nombre}}</label>
             <input id="nombre" type="text" pInputText [(ngModel)]="producto.nombre"
                 [ngClass]="{'ng-invalid ng-dirty': !validaciones.nombre}" />
             <small *ngIf="!validaciones.nombre" class="block required">Obligatorio</small>
@@ -9,15 +9,16 @@
     </div>
     <div class="grid p-fluid">
         <div class="col-6 field" id="precio">
-            <label for="precio" class="block">Precio</label>
+            <label for="precio" class="block">{{constantes.precio}}</label>
             <p-inputNumber [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal"
                 [step]="0.1" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" mode="decimal"
-                [minFractionDigits]="1" [(ngModel)]="precio" [ngClass]="{'ng-invalid ng-dirty': !validaciones.precio}">
+                [minFractionDigits]="1" [(ngModel)]="precio" [ngClass]="{'ng-invalid ng-dirty': !validaciones.precio}"
+                decrementButtonClass="p-button-secondary p-button-outlined" incrementButtonClass="p-button-secondary p-button-outlined">
             </p-inputNumber>
             <small *ngIf="!validaciones.precio" class="block required">Obligatorio</small>
         </div>
         <div class="col-6 field">
-            <label for="Formato" class="block">Formato</label>
+            <label for="Formato" class="block">{{constantes.formato}}</label>
             <p-dropdown [options]="formatos" placeholder="Seleccione un valor" optionLabel="valor" optionValue="valor"
                 [(ngModel)]="producto.formato" [ngClass]="{'ng-invalid ng-dirty': !validaciones.formato}"></p-dropdown>
             <small *ngIf="!validaciones.formato" class="block required">Obligatorio</small>
@@ -25,7 +26,7 @@
     </div>
     <div class="grid p-fluid">
         <div class="col-12 field">
-            <label for="marca" class="block">Marca</label>
+            <label for="marca" class="block">{{constantes.marca}}</label>
             <input id="marca" type="text" pInputText [(ngModel)]="producto.marca"
                 [ngClass]="{'ng-invalid ng-dirty': !validaciones.marca}" />
             <small *ngIf="!validaciones.marca" class="block required">Obligatorio</small>
@@ -35,12 +36,12 @@
     <div class="grid p-fluid">
         <div class="col-2">
             <div class="boton boton-gris">
-                <p-button label="Cancelar" (click)="cancelar()"></p-button>
+                <p-button label="{{constantes.cancelar}}" (click)="cancelar()"></p-button>
             </div>
         </div>
         <div class="col-2 col-offset-8">
             <div class="boton boton-verde">
-                <p-button label="Guardar" (click)="guardar()"></p-button>
+                <p-button label="{{constantes.guardar}}" (click)="guardar()"></p-button>
             </div>
         </div>
     </div>

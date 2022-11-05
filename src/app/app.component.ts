@@ -3,8 +3,11 @@ import { Tornillo } from './interfaces/tornillo';
 
 import { TornillosService } from './services/tornillos/tornillos.service';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ConfirmationService } from 'primeng/api';
 
 import { NuevoProductoComponent } from './components/nuevo-producto/nuevo-producto.component';
+
+import { Constantes } from './constants/constants';
 
 @Component({
   selector: 'app-root',
@@ -14,50 +17,63 @@ import { NuevoProductoComponent } from './components/nuevo-producto/nuevo-produc
 export class AppComponent implements OnInit {
   title = 'Prueba-Angular-Mercadona';
 
+  constantes = Constantes;
+
   tornillos: Tornillo[] = [];
 
   tornillosNuevos: Tornillo[] = [];
 
+  total!: number;
+
   mostrarTabla: boolean = false;
 
-  constructor(private tornillosService: TornillosService, private dialogService: DialogService) { }
+  constructor(private tornillosService: TornillosService, private dialogService: DialogService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-
+    this.getTornillos();
   }
 
   revisar(): void {
-    this.getTornillos();
+    this.mostrarTabla = true;
   }
 
   getTornillos(): void {
     this.tornillosService.getTornillos().subscribe(res => {
       if (res != null && res != undefined) {
         this.tornillos = res;
-        if (this.tornillosNuevos.length > 0) {
-          this.tornillos.unshift(...this.tornillosNuevos);
-        }
-        this.mostrarTabla = true;
+        this.total = this.tornillos.length;
       }
     })
   }
 
   nuevoProducto() {
     const ref = this.dialogService.open(NuevoProductoComponent, {
-      header: 'Nuevo producto',
+      header: this.constantes.nuevo_producto,
       width: '60%',
       contentStyle: { "overflow": "hidden" },
+      closable: false,
     });
 
     ref.onClose.subscribe((tornillo: Tornillo) => {
       if (tornillo != undefined) {
+        this.tornillosNuevos = [...this.tornillos];
         this.tornillosNuevos.unshift(tornillo);
-        this.revisar();
+        this.tornillos = [...this.tornillosNuevos];
       }
     });
   }
 
-  eliminar(tornillo: Tornillo): void {
-    
+  eliminar(tornilloSeleccionado: Tornillo): void {
+    this.confirmationService.confirm({
+      message: this.constantes.desea_eliminar,
+      header: this.constantes.confirmacion,
+      acceptLabel: this.constantes.eliminar,
+      rejectLabel: this.constantes.cancelar,
+      acceptIcon: 'null',
+      rejectIcon: 'null',
+      accept: () => {
+          this.tornillos = this.tornillos.filter(tornillo => tornillo != tornilloSeleccionado);
+      }
+  });
   }
 }

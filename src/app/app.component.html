@@ -2,13 +2,13 @@
   <app-header></app-header>
 </div>
 <div id="bloque-bienvenida" *ngIf="!mostrarTabla">
-  <p id="texto-bienvenida">Bienvenido</p>
+  <p id="texto-bienvenida">{{constantes.bienvenido}}</p>
 
   <p-card id="bloque-inicial">
-    <p>Tornillos</p>
-    <p>100 por revisar</p>
+    <p id="texto-grande">{{constantes.tornillos}}</p>
+    <p>{{total}} {{constantes.por_revisar}}</p>
     <div class="boton boton-verde" id="boton-revisar">
-      <p-button label="Revisar" class="p-button-success" icon="pi pi-eye" (click)="revisar()"></p-button>
+      <p-button label="{{constantes.revisar}}" class="p-button-success" icon="pi pi-eye" (click)="revisar()"></p-button>
     </div>
   </p-card>
 
@@ -17,7 +17,7 @@
 <div id="tabla-resultado" *ngIf="mostrarTabla">
   <div style="width: 50rem;">
   <p-table [value]="tornillos" [scrollable]="true" scrollHeight="450px" [paginator]="true" [rows]="5"
-    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true" currentPageReportTemplate="{{constantes.mostrando}} {first} {{constantes.a}} {last} {{constantes.de}} {totalRecords} {{constantes.items}}"
     [rowsPerPageOptions]="[5,10,20]">
     <ng-template pTemplate="caption">
       <div class="flex">
@@ -26,11 +26,11 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Formato</th>
-        <th>Marca</th>
-        <th>Acciones</th>
+        <th>{{constantes.nombre}}</th>
+        <th>{{constantes.precio}}</th>
+        <th>{{constantes.formato}}</th>
+        <th>{{constantes.marca}}</th>
+        <th>{{constantes.acciones}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-tornillo>
@@ -51,6 +51,8 @@
 
 <div id="footer" *ngIf="mostrarTabla">
   <div class="boton boton-verde mr-2" id="boton-nuevo">
-    <p-button label="Añadir producto" class="p-button-success" (click)="nuevoProducto()"></p-button>
+    <p-button label="{{constantes.anadir_producto}}" class="p-button-success" (click)="nuevoProducto()"></p-button>
   </div>
 </div>
+
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text p-button-secondary" acceptButtonStyleClass="p-button-danger" [closable]="false"></p-confirmDialog>
