@@ -14,5 +14,5 @@ export class TornillosService {
   getTornillos(): Observable<Tornillo[]> {
     return this.http.get<Tornillo[]>('assets/tornillos.json');
 
-}
+  }
 }

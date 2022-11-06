@@ -4,6 +4,7 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { Tornillo, TORNILLO_BLANK } from 'src/app/interfaces/tornillo';
 import { UtilsService } from 'src/app/services/utils/utils.service';
 import { Constantes } from 'src/app/constants/constants';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-nuevo-producto',
@@ -18,6 +19,8 @@ export class NuevoProductoComponent implements OnInit {
 
   precio: number = 0.1;
 
+  form: FormGroup = new FormGroup({})
+
   formatos: any[] = [{ id: 0, valor: 'black' }, { id: 2, valor: 'orange' }, { id: 3, valor: 'azure' }];
 
   validaciones: any = {
@@ -27,10 +30,15 @@ export class NuevoProductoComponent implements OnInit {
     marca: true
   }
 
-  constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig, private utilsService: UtilsService) { }
+  constructor(private ref: DynamicDialogRef, private config: DynamicDialogConfig, private utilsService: UtilsService,  private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.form = this.fb.group({
+      nombre: ['', [Validators.required]],
+      precio: [null, [Validators.required]],
+      formato: ['', [Validators.required]],
+      marca: ['', [Validators.required]],
+    })
   }
 
   cancelar(): void {

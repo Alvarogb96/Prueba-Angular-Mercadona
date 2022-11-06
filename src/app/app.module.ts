@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { PrimengModule } from './config/primeng.module';
 
@@ -11,7 +12,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NuevoProductoComponent } from './components/nuevo-producto/nuevo-producto.component';
 
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConfirmationService } from 'primeng/api';
 import { LoginComponent } from './components/login/login.component';
 
@@ -28,11 +29,13 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     PrimengModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     DialogService,
-    ConfirmationService
+    ConfirmationService,
+    DynamicDialogRef
   ],
   bootstrap: [AppComponent]
 })
