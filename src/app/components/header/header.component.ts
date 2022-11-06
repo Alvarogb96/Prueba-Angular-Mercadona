@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Constantes } from 'src/app/constants/constants';
 
 @Component({
@@ -6,7 +6,7 @@ import { Constantes } from 'src/app/constants/constants';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
 
   @Input() usuario!: string;
   @Input() mostrarUsuario!: boolean;
@@ -20,11 +20,6 @@ export class HeaderComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if(changes['mostrarUsuario']){
-      console.log(this.usuario);
-    }
-  }
 
   iniciarSesion(): void {
     this.loginEvent.emit(true);

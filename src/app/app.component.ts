@@ -30,10 +30,12 @@ export class AppComponent implements OnInit {
   mostrarUsuario: boolean = false;
   mostrarTabla: boolean = false;
   mostrarLogin: boolean = false;
+  cargando!: boolean;
 
   constructor(private tornillosService: TornillosService, private dialogService: DialogService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.cargando = true;
     this.getTornillos();
   }
 
@@ -46,6 +48,10 @@ export class AppComponent implements OnInit {
       if (res != null && res != undefined) {
         this.tornillos = res;
         this.total = this.tornillos.length;
+
+        setTimeout(() => {
+          this.cargando = false
+        }, 2000)
       }
     })
   }
@@ -95,9 +101,14 @@ export class AppComponent implements OnInit {
 
   mostrarUsuarioEvent(event: boolean): void {
     if(event){
-      this.mostrarUsuario = event;
-      this.mostrarTabla = true;
+      this.cargando = true;
       this.mostrarLogin = false;
+      this.mostrarUsuario = event;
+      setTimeout(() => {
+        this.cargando = false;
+        this.mostrarTabla = true;
+      }, 2000)
+      
     } 
     
   }

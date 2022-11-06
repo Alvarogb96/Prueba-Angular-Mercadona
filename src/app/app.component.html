@@ -7,7 +7,7 @@
 </div>
 
 
-<div id="bloque-bienvenida" *ngIf="!mostrarTabla && !mostrarLogin">
+<div id="bloque-bienvenida" *ngIf="!mostrarTabla && !mostrarLogin && !cargando">
   <p id="texto-bienvenida">{{constantes.bienvenido}}</p>
 
   <p-card id="bloque-inicial">
@@ -17,6 +17,14 @@
       <p-button label="{{constantes.revisar}}" class="p-button-success" icon="pi pi-eye" (click)="revisar()"></p-button>
     </div>
   </p-card>
+</div>
+
+<div id="bloque-login" *ngIf="cargando">
+  <div>
+    <p-progressSpinner [style]="{width: '100px', height: '100px'}" styleClass="custom-spinner" strokeWidth="8"
+      fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+    <p>Cargando...</p>
+  </div>
 </div>
 
 <div id="tabla-resultado" *ngIf="mostrarTabla && !mostrarLogin">

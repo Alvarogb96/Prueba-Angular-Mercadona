@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     declarations: [],
@@ -18,7 +19,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
         InputTextModule,
         DropdownModule,
         InputNumberModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        ProgressSpinnerModule
     ]
 })
 export class PrimengModule { }
