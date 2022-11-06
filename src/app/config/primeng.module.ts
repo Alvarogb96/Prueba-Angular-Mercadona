@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
     declarations: [],
@@ -20,7 +21,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         DropdownModule,
         InputNumberModule,
         ConfirmDialogModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        PasswordModule
     ]
 })
 export class PrimengModule { }

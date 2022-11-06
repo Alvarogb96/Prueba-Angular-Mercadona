@@ -8,7 +8,8 @@
     <div class="grid p-fluid">
         <div class="col-12 field">
             <label for="nombre" class="block">Contraseña</label>
-            <input id="nombre" type="text" pInputText [(ngModel)]="password"/>
+            <!-- <input id="nombre" type="text" pInputText [(ngModel)]="password"/> -->
+            <p-password  [(ngModel)]="password" [feedback]="false"></p-password>
         </div>
     </div>
 
